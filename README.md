@@ -51,6 +51,16 @@ npm run develop
 
 ```
 
+### 访问创建的静态站点
+
+```dotnetcli
+// 主页
+http://localhost:8080/
+
+// GraphQL 查询测试页
+http://localhost:8080/___explore
+```
+
 ## 参考链接
 
 ```dotnetcli
