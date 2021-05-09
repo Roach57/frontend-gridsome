@@ -1,135 +1,52 @@
 <template>
-  <div>
-    <!-- Page Header -->
-    <section class="page-header" :style="'background-image: linear-gradient(120deg, '+backgroundColorLeft+', '+backgroundColorRight+');color: '+fontColor+';'">
-      <h1 class="project-name">{{blogTitle}}</h1>
-      <h2 class="project-tagline">{{blogDescribe}}</h2>
-      <a :href="'https://github.com/'+githubUsername" class="btn" target="_blank">GitHub主页</a>
-      <a href="https://github.com/Roach57/frontend-gridsome" class="btn" target="_blank">博客源码</a>
-    </section>
-
-    <!-- Main Content -->
-    <section class="main-content">
-      <el-row>
-        <el-col :span="6" style="padding-right:10px">
-          <!-- <sidebar></sidebar> -->
-          <h1>侧边</h1>
-        </el-col>
-        <el-col :span="18" style="padding-left:10px">
-          <h1>主体内容</h1>
-          <!-- <app-main></app-main> -->
-        </el-col>
-      </el-row>
-    </section>
-    <section class="foot">
-      <h1>底部</h1>
-      <!-- <foot></foot> -->
-    </section>
-  </div>
+    <Layout>
+            <el-card shadow="never" style="min-height: 400px" v-if="blog.id">
+                <div slot="header">
+                    <span>{{blog.title}}</span>
+                </div>
+                <div style="font-size: 0.9rem;line-height: 1.5;color: #606c71;">
+                    发布 {{blog.createTime}}
+                    <br> 更新 {{blog.updateTime}}
+                </div>
+                <div style="font-size: 1.1rem;line-height: 1.5;color: #303133;border-bottom: 1px solid #E4E7ED;padding: 5px 0px 5px 0px">
+                    <pre style="font-family: '微软雅黑'">{{blog.description}}</pre>
+                </div>
+                <div v-html="blog.content" class="markdown-body" style="padding-top: 20px"></div>
+            </el-card>
+            <el-card shadow="never" style="margin-bottom: 20px;padding: 20px 0px 20px 0px;text-align: center" v-if="!blog.id">
+                <font style="font-size: 30px;color:#dddddd ">
+                    <b>没有更新 ╮(๑•́ ₃•̀๑)╭</b>
+                </font>
+            </el-card>
+    </Layout>
 </template>
 
 <script>
 export default {
-  metaInfo: {
-    title: 'Roch57 GridSome'
-  },
-  data() {
-    return {
-      blogTitle:'Roch57',
-      blogDescribe:'Welcome to my blog',
-      githubUsername: 'Roach57',
-      music: {
-        isPlay: false,
-        currentTime: 0,
-        maxTime: 0,
-        volume: 100
-      },
-      fullButton: {
-        full: false
-      },
-      topbar: {
-        active: "",
-      },
-      randomIcon: []
-    }
-  },
+    name: 'NewPage',
+    metaInfo: {
+        title: 'New Roch57'
+    },
+    data() {
+        return {
+            query: {
+                page: 1,
+                pageSize: 1
+            },
+            loading: false,
+            blog: {
+                id: "1",
+                title: "2018.5.19 更新",
+                content: "<h1>NewPage-主体内容</h1>",
+                description: "1 增加使用帮助\n2 改进readme不存在时的情况",
+                createTime: "2018-05-19 01:10:06",
+                updateTime: "2018-05-19 01:10:06"
+            }
+        }
+    },
 }
 </script>
 
 <style>
-    .page-header {
-        padding: 5rem 6rem;
-        color: #fff;
-        text-align: center;
-        background-color: #159957;
-        background-image: linear-gradient(120deg, #155799, #159957);
-    }
 
-    .project-name {
-        font-size: 3.25rem;
-        margin-top: 0;
-        margin-bottom: 0.1rem;
-    }
-
-    .project-tagline {
-        font-size: 1.25rem;
-        margin-bottom: 2rem;
-        font-weight: normal;
-        opacity: 0.7;
-    }
-
-    .btn:hover {
-        color: rgba(255, 255, 255, 0.8);
-        text-decoration: none;
-        background-color: rgba(255, 255, 255, 0.2);
-        border-color: rgba(255, 255, 255, 0.3);
-    }
-
-    a:hover {
-        text-decoration: underline;
-    }
-
-    a:active,
-    a:hover {
-        outline: 0;
-    }
-
-    .btn {
-        padding: 0.75rem 1rem;
-        display: inline-block;
-        margin-bottom: 1rem;
-        color: rgba(255, 255, 255, 0.7);
-        background-color: rgba(255, 255, 255, 0.08);
-        border-color: rgba(255, 255, 255, 0.2);
-        border-style: solid;
-        border-width: 1px;
-        border-radius: 0.3rem;
-        transition: color 0.2s, background-color 0.2s, border-color 0.2s;
-    }
-
-    a {
-        color: #1e6bb8;
-        text-decoration: none;
-    }
-
-    .btn+.btn {
-        margin-left: 1rem;
-    }
-
-    .main-content {
-        max-width: 64rem;
-        padding: 30px 0px 30px 0px;
-        margin: 0 auto;
-        font-size: 1.1rem;
-        word-wrap: break-word;
-        min-height: 800px;
-    }
-
-    .foot {
-        max-width: 67rem;
-        margin: 0 auto;
-        font-size: 12px !important;
-        color: #586069 !important;
-        word-wrap: break-word;
-    }
 </style>
