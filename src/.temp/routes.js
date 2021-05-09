@@ -19,11 +19,11 @@ export default [
     }
   },
   {
-    name: "__project_details_id_w",
-    path: "/project/details/:id(\\w+)",
+    name: "__project_details_id",
+    path: "/project/details/:id",
     component: c2,
     meta: {
-      dataPath: "/project/details/_id_w_plus.json",
+      dataPath: "/project/details/_id.json",
       dynamic: true
     }
   },

@@ -17,7 +17,7 @@ module.exports = function (api) {
       component: './src/pages/blog/Details.vue'
     }),
       createPage({
-        path: '/project/details/:id(\\w+)',
+        path: '/project/details/:id',
         component: './src/pages/project/Details.vue'
       })
     createPage({
