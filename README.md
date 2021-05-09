@@ -61,6 +61,64 @@ http://localhost:8080/
 http://localhost:8080/___explore
 ```
 
+
+### 通过 docker 在服务器安装 strapi
+
+docker-compose.yml
+```dotnetcli
+version: '3'
+services:
+  strapi:
+    image: strapi/strapi
+    environment:
+      DATABASE_CLIENT: mysql
+      DATABASE_HOST: mysql
+      DATABASE_PORT: 3306
+      DATABASE_NAME: blog-gridsome
+      DATABASE_USERNAME: strapi
+      DATABASE_PASSWORD: strapi
+      DATABASE_SSL: 'false'
+    volumes:
+      - ./app:/srv/app
+    ports:
+      - '1337:1337'
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: strapi
+      MYSQL_DATABASE: blog-gridsome
+      MYSQL_USER: strapi
+      MYSQL_PASSWORD: strapi
+
+```
+
+#### 部署运行
+
+> 安装依赖:
+> - docker
+> - docker-compose
+
+
+```dotnetcli
+docker-compose pull
+docker-compose up -d
+```
+
+### 创建 vercel 并部署 gridsome
+
+访问地址
+
+```dotnetcli
+https://frontend-gridsome.vercel.app/
+```
+
+
 ## 参考链接
 
 ```dotnetcli
@@ -76,6 +134,9 @@ https://github.com/libvips/libvips
 https://github.com/lovell/sharp # 依赖 vips
 https://github.com/nodejs/node-gyp # 依赖 sharp
 https://sharp.pixelplumbing.com/install
+
+// 项目部署
+https://vercel.com/dashboard/
 ```
 
 ## Mac 部署问题解决
