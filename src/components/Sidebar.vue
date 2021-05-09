@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-card shadow="never">
-            <el-menu :default-active="active" @select="onSelect">
+            <el-menu :default-active="active">
                 <el-menu-item
                     v-for="item in constantRouterMap"
                     :key="item.path"

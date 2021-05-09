@@ -2,7 +2,7 @@
   <div class="layout">
 
     <!-- Page Header -->
-    <section class="page-header" :style="'background-image: linear-gradient(120deg, '+backgroundColorLeft+', '+backgroundColorRight+');color: '+fontColor+';'">
+    <section class="page-header">
       <div v-for="(item,index) in randomIcon" :key="'ri'+index" :style="'position:absolute; top:'+item.top+'px; left:'+item.left+'px; z-index:1;'">
         <font :style="'font-size: '+item.size+'px;color:#fff;'">
           <b>♪</b>
