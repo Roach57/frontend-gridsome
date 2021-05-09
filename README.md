@@ -98,6 +98,13 @@ services:
 
 ```
 
+配置的访问地址
+
+```dotnetcli
+http://strapi.roch.top:11337
+
+```
+
 #### 部署运行
 
 > 安装依赖:
@@ -115,9 +122,30 @@ docker-compose up -d
 访问地址
 
 ```dotnetcli
+https://gridsome.roch.top/
 https://frontend-gridsome.vercel.app/
 ```
 
+### 配置 strapi更新 触发 vercel 的构建操作
+
+在 vercel 配置 hook
+
+```dotnetcli
+在 vercel 的项目中配置 Deploy Hooks -> \
+deploy | main -> Create Hook -> \
+https://api.vercel.com/v1/integrations/deploy/prj_FMJIFcdUiSFeeFu0XccNLnMjX9S4/6uaDl1P7Dw
+
+```
+
+在 strapi 中配置 Webhooks
+
+```dotnetcli
+名称: deploy
+请求地址: https://api.vercel.com/v1/integrations/deploy/prj_FMJIFcdUiSFeeFu0XccNLnMjX9S4/6uaDl1P7Dw
+事件:
+    Entry: [全选]
+    Media: [全选]
+```
 
 ## 参考链接
 
