@@ -16,8 +16,8 @@
                 </el-row>
             </div>
             <div style="font-size: 0.9rem;line-height: 1.5;color: #606c71;">
-                发布 {{$page.post.created_at}}
-                <br> 更新 {{$page.post.updated_at}}
+                发布 {{$page.post.created_at | date('YYYY-MM-DD HH:mm:ss')}}
+                <br> 更新 {{$page.post.updated_at | date('YYYY-MM-DD HH:mm:ss')}}
             </div>
             <div style="font-size: 1.1rem;line-height: 1.5;color: #303133;padding: 20px 0px 0px 0px">
                 {{$page.post.description}}
@@ -45,7 +45,7 @@
 
                 </el-row>
             </div>
-            <div v-html="$page.post.content" v-if="$page.post.content" class="markdown-body" style="padding-top: 20px"></div>
+            <div v-html="mdToHtml($page.post.content)" v-if="$page.post.content" class="markdown-body" style="padding-top: 20px"></div>
             <div v-if="!$page.post.content" style="padding: 20px 0px 20px 0px;text-align: center">
                 <font style="font-size: 30px;color:#dddddd ">
                     <b>还没有介绍 (╯°Д°)╯︵ ┻━┻</b>
@@ -75,6 +75,10 @@ query ($id: ID!){
 </page-query>
 
 <script>
+import MarkdownIt from 'markdown-it'
+const md = new MarkdownIt()
+
+
 export default {
     data() {
         return {
@@ -82,6 +86,11 @@ export default {
                 name: ""
             },
             loading: false,
+        }
+    },
+    methods: {
+        mdToHtml (content) {
+            return md.render(content)
         }
     }
 }
