@@ -19,10 +19,10 @@ module.exports = function (api) {
       createPage({
         path: '/project/details/:id',
         component: './src/pages/project/Details.vue'
+      }),
+      createPage({
+        path: '/social/details/:id(\\w+)',
+        component: './src/pages/social/Details.vue'
       })
-    createPage({
-      path: '/social/details/:id(\\w+)',
-      component: './src/pages/social/Details.vue'
-    })
   })
 }

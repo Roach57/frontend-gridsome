@@ -21,7 +21,7 @@ export default {
         return {
             constantRouterMap: [
                 { meta: {icon: 'el-icon-star-off',title: '最新动态'}, path: '/'},
-                { meta: {icon: 'el-icon-mobile-phone',title: '社交圈'}, path: '/social'},
+                { meta: {icon: 'el-icon-mobile-phone',title: '社交圈'}, path: '/social/followers'},
                 { meta: {icon: 'el-icon-edit-outline',title: '博客列表'}, path: '/blog'},
                 { meta: {icon: 'el-icon-service',title: '开源项目'}, path: '/project'},
             ],
