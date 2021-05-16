@@ -19,9 +19,19 @@
                                 </el-col>
                             </el-row>
                             <div style="text-align: center;margin-top: 10px">
-                                <el-pagination @current-change="onSelect" background layout="prev, pager, next" :current-page.sync="followers.query.page"
-                                    :page-size="followers.query.pageSize" :total="followers.query.pageNumber*followers.query.pageSize">
-                                </el-pagination>
+                                <pager
+                                    class="btn-prev"
+                                    background layout="prev, pager, next"
+                                    :info="pageInfo"
+                                ></pager>
+                                <!-- <el-pagination
+                                    @current-change="list"
+                                    background layout="prev, pager, next"
+                                    :current-page.sync="pageInfo.currentPage"
+                                    :page-size="pageInfo.currentPage"
+                                    :total="pageInfo.totalPages"
+                                >
+                                </el-pagination> -->
                             </div>
                         </div>
                         <div style="min-height: 300px;margin-bottom: 20px;padding: 20px 0px 20px 0px;text-align: center" v-else>
@@ -31,7 +41,7 @@
                         </div>
                     </div>
                 </el-tab-pane>
-                <el-tab-pane :label="'关注 '+$page.postsFollowers.pageInfo.totalItems" name="following" style="padding: 5px">
+                <el-tab-pane :label="'关注 '+pageInfo.totalItems" name="following" style="padding: 5px">
 
                 </el-tab-pane>
             </el-tabs>
@@ -41,7 +51,7 @@
 
 <page-query>
 query ($page: Int){
-    postsFollowers: allStrapiSocials (perPage: 1, page: $page, filter: { followers: { eq: true }}) @paginate {
+    postsFollowers: allStrapiSocials (perPage: 1, page: $page, order: DESC, filter: { followers: { eq: true }}) @paginate {
         pageInfo {
             totalItems
             totalPages
@@ -88,11 +98,6 @@ export default {
         return {
             activeTab: "followers",
             followers: {
-                query: {
-                    page: 1,
-                    pageSize: 9,
-                    pageNumber: 1
-                },
                 loading: false,
                 list: []
             },
@@ -107,7 +112,15 @@ export default {
             }
         }
     },
+    computed: {
+        pageInfo() {
+            return this.$page.postsFollowers.pageInfo
+        }
+    },
     methods: {
+        list(){
+
+        },
         onSelect() {
             switch (this.activeTab) {
                 case "followers":

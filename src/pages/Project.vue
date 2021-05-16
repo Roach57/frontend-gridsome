@@ -54,13 +54,23 @@
                 </div>
             </el-card>
             <div style="text-align: center">
-                <el-pagination @current-change="list" background layout="prev, pager, next" :current-page.sync="$page.postsProjects.pageInfo.currentPage" :page-size="$page.postsProjects.pageInfo.totalPages"
-                    :total="$page.postsProjects.pageInfo.totalPages">
-                </el-pagination>
+                <pager
+                    class="btn-prev"
+                    background layout="prev, pager, next"
+                    :info="pageInfo"
+                ></pager>
+                <!-- <el-pagination
+                    @current-change="list"
+                    background layout="prev, pager, next"
+                    :current-page.sync="pageInfo.currentPage"
+                    :page-size="pageInfo.currentPage"
+                    :total="pageInfo.totalPages"
+                >
+                </el-pagination> -->
             </div>
         </div>
 
-        <el-card shadow="never" style="margin-bottom: 20px;padding: 20px 0px 20px 0px;text-align: center" v-if="!$page.postsProjects.pageInfo.totalItems||$page.postsProjects.pageInfo.totalItems==0">
+        <el-card shadow="never" style="margin-bottom: 20px;padding: 20px 0px 20px 0px;text-align: center" v-if="!pageInfo.totalItems||pageInfo.totalItems==0">
             <font style="font-size: 30px;color:#dddddd ">
                 <b>还没有开源项目 (╯°Д°)╯︵ ┻━┻</b>
             </font>
@@ -94,53 +104,39 @@ query ($page: Int){
 
 </page-query>
 
+<static-query>
+
+</static-query>
+
 
 <script>
+import { Pager } from 'gridsome'
+
 export default {
     name: 'ProjectPage',
     metaInfo: {
         title: 'Project Roch57'
     },
+    components: {
+        Pager
+    },
     data() {
         return {
-            query: {
-                page: 2,
-                perPage: 10,
-                pageNumber: 1
-            },
             loading: false,
             searchKey: "",
             projects: []
         }
     },
+    computed: {
+        pageInfo() {
+            return this.$page.postsProjects.pageInfo
+        }
+    },
     methods: {
-        list() {
-            this.loading = true
-            let result = []
-
-            let pageNumber = 1
-            if (pageNumber) {
-                this.query.pageNumber = pageNumber
-            }
-            for (let i = 0; i < result.length; i++) {
-                let item = result[i]
-                let data = {}
-                data.id = item['id']
-                data.name = item['name']
-                data.url = item['html_url']
-                data.description = item['description']
-                data.stargazersCount = item['stargazers_count']
-                data.watchersCount = item['watchers_count']
-                data.forksCount = item['forks_count']
-                data.language = item['language']
-                data.license = item['license'] ? item['license']['spdx_id'] : null
-                data.createTime = item['created_at']
-                data.updateTime = item['updated_at']
-                data.hide = false
-                this.projects.push(data)
-            }
-            this.loading = false
-        },
+        list(id){
+            const page = id + 1
+            this.$router.push(`/project/${page}`)
+        }
     }
 }
 </script>

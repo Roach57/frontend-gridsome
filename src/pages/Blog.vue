@@ -38,14 +38,19 @@
                 </div>
             </el-card>
             <div style="text-align: center">
-                <el-pagination @current-change="list" layout="prev, pager, next" :current-page.sync="query.page" :page-size="query.pageSize"
-                    :total="query.pageNumber*query.pageSize">
-                </el-pagination>
+                <pager
+                    class="btn-prev"
+                    background layout="prev, pager, next"
+                    :info="pageInfo"
+                ></pager>
+                <!-- <el-pagination @current-change="list" background layout="prev, pager, next" :current-page.sync="pageInfo.currentPage" :page-size="pageInfo.currentPage"
+                    :total="pageInfo.totalPages">
+                </el-pagination> -->
             </div>
 
         </div>
 
-        <el-card shadow="never" style="margin-bottom: 20px;padding: 20px 0px 20px 0px;text-align: center" v-if="!$page.postsBlogs.pageInfo.totalItems||$page.postsBlogs.pageInfo.totalItems==0">
+        <el-card shadow="never" style="margin-bottom: 20px;padding: 20px 0px 20px 0px;text-align: center" v-if="!pageInfo.totalItems||pageInfo.totalItems==0">
             <font style="font-size: 30px;color:#dddddd ">
                 <b>还没有博客 (╯°Д°)╯︵ ┻━┻</b>
             </font>
@@ -55,7 +60,7 @@
 
 <page-query>
 query ($page: Int){
-    postsBlogs: allStrapiBlogs (perPage: 10, page: $page) @paginate {
+    postsBlogs: allStrapiBlogs (perPage: 2, page: $page) @paginate {
         pageInfo {
             totalItems
             totalPages
@@ -75,21 +80,26 @@ query ($page: Int){
 </page-query>
 
 <script>
+import { Pager } from 'gridsome'
+
 export default {
     name: 'BlogPage',
     metaInfo: {
         title: 'Blog Roch57'
     },
+    components: {
+        Pager
+    },
     data() {
         return {
-            query: {
-                page: 1,
-                pageSize: 5,
-                pageNumber: 1
-            },
             loading: false,
             searchKey: "",
             blogs: []
+        }
+    },
+    computed: {
+        pageInfo() {
+            return this.$page.postsBlogs.pageInfo
         }
     },
     methods: {

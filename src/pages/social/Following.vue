@@ -21,9 +21,19 @@
                                 </el-col>
                             </el-row>
                             <div style="text-align: center;margin-top: 10px">
-                                <el-pagination @current-change="onSelect" background layout="prev, pager, next" :current-page.sync="following.query.page"
-                                    :page-size="following.query.pageSize" :total="following.query.pageNumber*following.query.pageSize">
-                                </el-pagination>
+                                <pager
+                                    class="btn-prev"
+                                    background layout="prev, pager, next"
+                                    :info="pageInfo"
+                                ></pager>
+                                <!-- <el-pagination
+                                    @current-change="list"
+                                    background layout="prev, pager, next"
+                                    :current-page.sync="pageInfo.currentPage"
+                                    :page-size="pageInfo.currentPage"
+                                    :total="pageInfo.totalPages"
+                                >
+                                </el-pagination> -->
                             </div>
                         </div>
                         <div style="min-height: 300px;margin-bottom: 20px;padding: 20px 0px 20px 0px;text-align: center" v-else>
@@ -74,6 +84,7 @@ query ($page: Int){
 
 <script>
 import { Pager } from  'gridsome'
+
 export default {
     name: 'SocialPage',
     components: {
@@ -86,11 +97,6 @@ export default {
         return {
             activeTab: "following",
             followers: {
-                query: {
-                    page: 1,
-                    pageSize: 9,
-                    pageNumber: 1
-                },
                 loading: false,
                 list: []
             },
@@ -105,7 +111,15 @@ export default {
             }
         }
     },
+    computed: {
+        pageInfo() {
+            return this.$page.postsFollowing.pageInfo
+        }
+    },
     methods: {
+        list(){
+
+        },
         onSelect() {
             switch (this.activeTab) {
                 case "followers":
