@@ -162,7 +162,7 @@ pm2 start npm -- run start --name blog-backend
 npm install @gridsome/source-strapi
 ```
 
-## 查询 strapi 的数据
+## 查询 strapi 的数据 示例
 
 ```
 # Write your query or mutation here
