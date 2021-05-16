@@ -1,6 +1,6 @@
-const c1 = () => import(/* webpackChunkName: "page--src--pages--social--details-vue" */ "/Users/roach/pro/web_pro/lg-homework/frontend-gridsome/src/pages/social/Details.vue")
-const c2 = () => import(/* webpackChunkName: "page--src--pages--social--followers-vue" */ "/Users/roach/pro/web_pro/lg-homework/frontend-gridsome/src/pages/social/Followers.vue")
-const c3 = () => import(/* webpackChunkName: "page--src--pages--social--following-vue" */ "/Users/roach/pro/web_pro/lg-homework/frontend-gridsome/src/pages/social/Following.vue")
+const c1 = () => import(/* webpackChunkName: "page--src--pages--social--followers-vue" */ "/Users/roach/pro/web_pro/lg-homework/frontend-gridsome/src/pages/social/Followers.vue")
+const c2 = () => import(/* webpackChunkName: "page--src--pages--social--following-vue" */ "/Users/roach/pro/web_pro/lg-homework/frontend-gridsome/src/pages/social/Following.vue")
+const c3 = () => import(/* webpackChunkName: "page--src--pages--social--details-vue" */ "/Users/roach/pro/web_pro/lg-homework/frontend-gridsome/src/pages/social/Details.vue")
 const c4 = () => import(/* webpackChunkName: "page--src--pages--project--details-vue" */ "/Users/roach/pro/web_pro/lg-homework/frontend-gridsome/src/pages/project/Details.vue")
 const c5 = () => import(/* webpackChunkName: "page--src--pages--blog--details-vue" */ "/Users/roach/pro/web_pro/lg-homework/frontend-gridsome/src/pages/blog/Details.vue")
 const c6 = () => import(/* webpackChunkName: "page--src--pages--project-vue" */ "/Users/roach/pro/web_pro/lg-homework/frontend-gridsome/src/pages/Project.vue")
@@ -11,15 +11,15 @@ const c10 = () => import(/* webpackChunkName: "page--src--pages--index-vue" */ "
 
 export default [
   {
-    path: "/social/details/:id(\\w+)/",
+    path: "/social/followers/:page(\\d+)?/",
     component: c1
   },
   {
-    path: "/social/followers/:page(\\d+)?/",
+    path: "/social/following/:page(\\d+)?/",
     component: c2
   },
   {
-    path: "/social/following/:page(\\d+)?/",
+    path: "/social/details/:id/",
     component: c3
   },
   {
@@ -27,12 +27,12 @@ export default [
     component: c4
   },
   {
-    path: "/blog/details/:id(\\w+)/",
+    path: "/blog/details/:id/",
     component: c5
   },
   {
     path: "/social/details/",
-    component: c1
+    component: c3
   },
   {
     path: "/project/details/",

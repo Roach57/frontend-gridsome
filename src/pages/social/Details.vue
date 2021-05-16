@@ -23,9 +23,9 @@
                             <i class="el-icon-message"></i>&nbsp;&nbsp;{{$page.post.email}}
                             <br>
                         </font>
-                        <font style="font-size: 14px;color:#606266;" v-if="$page.post.id">
+                        <font style="font-size: 14px;color:#606266;" v-if="$page.post.html_url">
                             <i class="el-icon-edit-outline"></i>&nbsp;&nbsp;
-                            <!-- <a :href="$util.addHttp(blog)" target="_blank">{{blog}}</a> -->
+                            <a :href="$page.post.html_url"  target="_blank">{{$page.post.html_url}}</a>
                             <br>
                         </font>
                     </div>
