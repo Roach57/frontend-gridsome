@@ -11,7 +11,7 @@
                                 <el-col :span="8" v-for="edge in $page.postsFollowing.edges" :key="edge.node.id" style="padding: 10px">
                                     <el-card shadow="hover" style="font-size: 13px;color: #606266;line-height: 20px">
                                         <i class="el-icon-star-off"></i>&emsp;
-                                        <a @click="$router.push(`/social/details/${edge.node.id}`)" style=" text-decoration:none;cursor:pointer">{{edge.node.name}}</a>
+                                        <g-link :to="`/social/details/${edge.node.id}`" style="text-decoration:none;cursor:pointer">{{edge.node.name}}</g-link>
                                         <br>
                                         <i class="el-icon-message"></i>&emsp;
                                         <a :href="edge.node.html_url" target="_blank" style=" text-decoration:none;cursor:pointer">TA的主页</a>

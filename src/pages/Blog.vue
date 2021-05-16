@@ -13,9 +13,12 @@
                     <el-row>
                         <el-col :span="16">
                             <span>
-                                <a style="text-decoration:none;cursor:pointer" @click="$router.push(`/blog/details/${edge.node.id}`)">
+                                <g-link
+                                    style="text-decoration:none;cursor:pointer"
+                                    :to="`/blog/details/${edge.node.id}`"
+                                >
                                     <i class="el-icon-edit-outline"></i>&nbsp;&nbsp; {{edge.node.title}}
-                                </a>
+                                </g-link>
                             </span>
                         </el-col>
                         <el-col :span="8">
@@ -54,17 +57,17 @@
 query ($page: Int){
     postsBlogs: allStrapiBlogs (perPage: 10, page: $page) @paginate {
         pageInfo {
-          totalItems
-          totalPages
-          currentPage
+            totalItems
+            totalPages
+            currentPage
         }
         edges {
-          node {
-            id
-            title
-            description
-            content
-          }
+            node {
+                id
+                title
+                description
+                content
+            }
         }
     }
 }

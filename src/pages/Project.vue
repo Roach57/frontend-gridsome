@@ -2,8 +2,6 @@
     <Layout>
         <el-card shadow="never" style="margin-bottom: 20px">
             <el-input placeholder="请输入关键字" v-model="searchKey" clearable style="width: 300px"></el-input>
-            <!-- <el-button @click="search" icon="el-icon-search" style="margin-left: 10px" circle plain></el-button>
-            <el-button @click="$share()" icon="el-icon-share" type="warning" style="margin-left: 10px" plain circle></el-button> -->
         </el-card>
 
         <div v-if="$page.postsProjects.pageInfo.totalItems&&$page.postsProjects.pageInfo.totalItems>0">
@@ -12,14 +10,17 @@
                     <el-row>
                         <el-col :span="16">
                             <span>
-                                <a style="text-decoration:none;cursor:pointer" @click="$router.push(`/project/details/${edge.node.id}`)">
+                                <g-link
+                                    style="text-decoration:none;cursor:pointer"
+                                    :to="`/project/details/${edge.node.id}`"
+                                >
                                     <i class="el-icon-service"></i>&nbsp;&nbsp; {{edge.node.name}}
-                                </a>
+                                </g-link>
                             </span>
                         </el-col>
                         <el-col :span="8">
                             <div style="text-align: right;">
-                                <el-button @click="goGithub(edge.node.html_url)" style="padding: 3px 0" type="text" icon="el-icon-back">前往GitHub</el-button>
+                                <el-button style="padding: 3px 0" type="text" icon="el-icon-back">前往GitHub</el-button>
                             </div>
                         </el-col>
                     </el-row>
