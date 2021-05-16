@@ -90,6 +90,9 @@ services:
     command: mysqld --default-authentication-plugin=mysql_native_password
     volumes:
       - ./data:/var/lib/mysql
+    ports:
+      - '3306:3306'
+      - '33060:33060'
     environment:
       MYSQL_ROOT_PASSWORD: strapi
       MYSQL_DATABASE: blog-gridsome
@@ -102,6 +105,7 @@ services:
 
 ```dotnetcli
 http://strapi.roch.top:11337
+http://strapi.roch.top:11337/graphql
 
 ```
 
@@ -146,6 +150,47 @@ https://api.vercel.com/v1/integrations/deploy/prj_FMJIFcdUiSFeeFu0XccNLnMjX9S4/6
     Entry: [全选]
     Media: [全选]
 ```
+
+## 配置 gridsome 从 strapi 中获取内容
+
+```
+npm run build
+
+npm i -g pm2
+pm2 start npm -- run start --name blog-backend
+
+npm install @gridsome/source-strapi
+```
+
+## 查询 strapi 的数据
+
+```
+# Write your query or mutation here
+query {
+  allStrapiBlogs {
+    edges {
+      node {
+        id
+        title
+        description
+        content
+      }
+    }
+  }
+}
+```
+
+```
+query {
+  strapiBlogs (id:1) {
+    id
+		title
+    description
+    content
+  }
+}
+```
+
 
 ## 参考链接
 
