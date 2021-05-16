@@ -8,7 +8,7 @@
         </el-card>
 
         <div v-if="$page.postsBlogs.pageInfo.totalItems&&$page.postsBlogs.pageInfo.totalItems>0">
-            <el-card shadow="hover" v-for="edge in $page.postsBlogs.edges" :key="edge.node.id" style="margin-bottom: 20px">
+            <el-card shadow="hover" v-for="edge in searchResults" :key="edge.node.id" style="margin-bottom: 20px">
                 <div slot="header">
                     <el-row>
                         <el-col :span="16">
@@ -100,6 +100,11 @@ export default {
     computed: {
         pageInfo() {
             return this.$page.postsBlogs.pageInfo
+        },
+        searchResults() {
+            return this.$page.postsBlogs.edges.filter(edge => {
+                return edge.node.title.toLowerCase().includes(this.searchKey.toLowerCase().trim())
+            })
         }
     },
     methods: {
