@@ -11,13 +11,8 @@ const c10 = () => import(/* webpackChunkName: "page--src--pages--index-vue" */ "
 
 export default [
   {
-    name: "__social_details_id_w",
-    path: "/social/details/:id(\\w+)",
-    component: c1,
-    meta: {
-      dataPath: "/social/details/_id_w_plus.json",
-      dynamic: true
-    }
+    path: "/social/details/:id(\\w+)/",
+    component: c1
   },
   {
     path: "/social/followers/:page(\\d+)?/",
@@ -28,22 +23,12 @@ export default [
     component: c3
   },
   {
-    name: "__project_details_id",
-    path: "/project/details/:id",
-    component: c4,
-    meta: {
-      dataPath: "/project/details/_id.json",
-      dynamic: true
-    }
+    path: "/project/details/:id/",
+    component: c4
   },
   {
-    name: "__blog_details_id_w",
-    path: "/blog/details/:id(\\w+)",
-    component: c5,
-    meta: {
-      dataPath: "/blog/details/_id_w_plus.json",
-      dynamic: true
-    }
+    path: "/blog/details/:id(\\w+)/",
+    component: c5
   },
   {
     path: "/social/details/",

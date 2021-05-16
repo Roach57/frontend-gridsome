@@ -53,8 +53,8 @@
                 </div>
             </el-card>
             <div style="text-align: center">
-                <el-pagination @current-change="list" background layout="prev, pager, next" :current-page.sync="query.page" :page-size="query.pageSize"
-                    :total="query.pageNumber*query.pageSize">
+                <el-pagination @current-change="list" background layout="prev, pager, next" :current-page.sync="$page.postsProjects.pageInfo.currentPage" :page-size="$page.postsProjects.pageInfo.totalPages"
+                    :total="$page.postsProjects.pageInfo.totalPages">
                 </el-pagination>
             </div>
         </div>
@@ -69,7 +69,7 @@
 
 <page-query>
 query ($page: Int){
-    postsProjects: allStrapiProjects (perPage: 10, page: $page) @paginate {
+    postsProjects: allStrapiProjects (perPage: 2, page: $page) @paginate {
         pageInfo {
             totalItems
             totalPages
@@ -103,17 +103,14 @@ export default {
     data() {
         return {
             query: {
-                page: 1,
-                pageSize: 5,
+                page: 2,
+                perPage: 10,
                 pageNumber: 1
             },
             loading: false,
             searchKey: "",
             projects: []
         }
-    },
-    mounted() {
-        this.list()
     },
     methods: {
         list() {

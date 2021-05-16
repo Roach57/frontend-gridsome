@@ -23,5 +23,25 @@ module.exports = {
         // }
       }
     }
-  ]
+  ],
+  templates: {
+    StrapiBlogs: [
+      {
+        path: '/blog/details/:id',
+        component: './src/pages/blog/Details.vue'
+      }
+    ],
+    StrapiProjects: [
+      {
+        path: '/project/details/:id',
+        component: './src/pages/project/Details.vue'
+      }
+    ],
+    StrapiSocials: [
+      {
+        path: '/social/details/:id',
+        component: './src/pages/social/Details.vue'
+      }
+    ]
+  }
 }
