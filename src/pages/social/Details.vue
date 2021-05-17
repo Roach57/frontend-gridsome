@@ -7,7 +7,7 @@
             </div>
             <el-row>
                 <el-col :span="9" style="padding: 0px 10px 20px 0px">
-                    <img :src="avatarUrl" style="width: 100%;border-radius:5px;">
+                    <img :src="$page.post.avatar_url" style="width: 100%;border-radius:5px;">
                     <div style="padding: 10px">
                         <font style="font-size: 26px;line-height: 40px;font-weight: 600">{{$page.post.name}}
                             <br>
@@ -47,7 +47,7 @@
     </Layout>
 </template>
 <page-query>
-query ($id: ID!){
+query ($id: ID) {
     post: strapiSocials (id: $id) {
         id
         name
@@ -72,17 +72,6 @@ export default {
     data() {
         return {
             loading: false,
-            githubUsername: this.$route.params.name,
-            name: null,
-            avatarUrl: null,
-            htmlUrl: null,
-            blog: null,
-            location: null,
-            email: null,
-            bio: null,
-            followers: null,
-            following: null,
-            publicRepos: null
         }
     }
 }
