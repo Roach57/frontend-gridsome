@@ -8,9 +8,9 @@
                     </el-col>
                     <el-col :span="12">
                         <div style="text-align: right;">
-                            <el-button @click="$share()" style="padding: 3px 0" type="text" icon="el-icon-share">分享</el-button>
-                            <el-button @click="edit" style="padding: 3px 0" type="text" icon="el-icon-edit" v-if="token">编辑</el-button>
-                            <el-button style=" padding: 3px 0" type="text" icon="el-icon-more-outline" @click="more">更多博客</el-button>
+                            <el-button style="padding: 3px 0" type="text" icon="el-icon-share">分享</el-button>
+                            <el-button style="padding: 3px 0" type="text" icon="el-icon-edit" >编辑</el-button>
+                            <el-button style=" padding: 3px 0" type="text" icon="el-icon-more-outline">更多博客</el-button>
                         </div>
                     </el-col>
                 </el-row>
@@ -28,7 +28,7 @@
 </template>
 
 <page-query>
-query ($id: ID!){
+query ($id: ID){
     post: strapiBlogs (id: $id) {
         id
         title
