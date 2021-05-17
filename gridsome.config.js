@@ -28,19 +28,19 @@ module.exports = {
     StrapiBlogs: [
       {
         path: '/blog/details/:id',
-        component: './src/pages/blog/Details.vue'
+        component: './src/templates/blog/Details.vue'
       }
     ],
     StrapiProjects: [
       {
         path: '/project/details/:id',
-        component: './src/pages/project/Details.vue'
+        component: './src/templates/project/Details.vue'
       }
     ],
     StrapiSocials: [
       {
         path: '/social/details/:id',
-        component: './src/pages/social/Details.vue'
+        component: './src/templates/social/Details.vue'
       }
     ]
   }

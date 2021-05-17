@@ -56,7 +56,7 @@
 </template>
 
 <page-query>
-query ($id: ID!){
+query ($id: ID){
     post: strapiProjects (id: $id) {
         id
         name
